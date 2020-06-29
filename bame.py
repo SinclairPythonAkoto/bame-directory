@@ -2,14 +2,14 @@ import pyrebase
 from flask import *
 
 config = {
-    "apiKey": "AIzaSyDKrW_cr5X6QRF_E4vA1phbQcP9urHMbdk",
-    "authDomain": "bame-c5ecc.firebaseapp.com",
-    "databaseURL": "https://bame-c5ecc.firebaseio.com",
-    "projectId": "bame-c5ecc",
-    "storageBucket": "bame-c5ecc.appspot.com",
-    "messagingSenderId": "87535704965",
-    "appId": "1:87535704965:web:5a2aaa61776041199242ec",
-    "measurementId": "G-TCKXXBR3F8"
+    "apiKey": "AIzaSyDzGHV_bWTwsZbdAGkiNj11sLZ9khKf43E",
+    "authDomain": "flaskfirebase-869f6.firebaseapp.com",
+    "databaseURL": "https://flaskfirebase-869f6.firebaseio.com",
+    "projectId": "flaskfirebase-869f6",
+    "storageBucket": "flaskfirebase-869f6.appspot.com",
+    "messagingSenderId": "716659971362",
+    "appId": "1:716659971362:web:258c468b0a8434467e817b",
+    "measurementId": "G-D0K2VY1HVT"
 }
 
 firebase = pyrebase.initialize_app(config)
