@@ -15,6 +15,17 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+# redirect to login
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to sign in first')
+            return redirect(url_for('login'))
+    return wrap
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
