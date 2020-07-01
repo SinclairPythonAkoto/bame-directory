@@ -47,6 +47,21 @@ def basic():
         return render_template('layout.html')
     return render_template('layout.html')
 
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        user = request.form.get('usernme')
+        userPassword = request.form.get('password')
+        # users = dict(username=user, password=userPassword)
+        db.child("BAMEusers").push([user, userPassword])
+        bameUsers = db.child("BAMEusers").get()
+        userList = bameUsers.val()
+        return render_template('layout.html', bameList=userList.values())
+
+    # return print(userList.values())
+    # return render_template('layout.html', userList=userList.values())
+    # return f"hello {userList}!"
+
 # @app.route('/')
 # def home():
 #     return render_template('layout.html')

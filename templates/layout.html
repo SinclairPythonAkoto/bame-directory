@@ -276,18 +276,25 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin:32px 0">
 
     <p>Enter your details below to register your buisness:</p>
-    <form action="" id="registerBuisness">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Username" required name="usernme"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Password" required name="password"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+    <form action="{{ url_for('login') }}" id="registerBuisness" method="post">
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Username" name="usernme" required></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Password" name="password" required></p>
+      <!-- <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p> -->
       <p>
         <button class="w3-button w3-light-grey w3-padding-large" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+          <i class="fa fa-paper-plane"></i> Register business
         </button>
       </p>
     </form>
   <!-- End Contact Section -->
+  <div class="container-fluid">
+    {% for p in bameList %}
+      <ul class="list-group-item">
+        <li>{{ p[0] }}<br>{{ p[1] }}</li>
+      </ul>
+    {% endfor %}
+  </div>
   </div>
 
   <!-- Footer -->
