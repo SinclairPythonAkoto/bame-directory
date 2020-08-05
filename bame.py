@@ -13,6 +13,7 @@ config = {
 }
 
 firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
 db = firebase.database()
 
 # redirect to login
@@ -43,20 +44,64 @@ def basic():
         elif request.form.get('submit') == 'delete':
             # db.child("todo").equal_to("foodie").remove()
         # return render_template('index.html', t=to.values())
-            db.child("todo").remove() # this removes ALL database values
+            db.child("todo").remove()
+            db.child("BAMEusers"). remove() # this removes ALL database values
         return render_template('layout.html')
     return render_template('layout.html')
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    success = 'Login successsful!'
+    accessDenied = 'Login unsuccessful'
+    if request.form == 'POST':
+        email = request.form.get('username')
+        password = request.form.get('password')
+        user = auth.sign_in_with_email_and_password(email, password)
+        # user = auth.refresh(user['refreshToken'])
+        # user_id = user['idToken']
+        return "login success"
+            # return render_template('layout.html', success=success)
+    return render_template('layout.html', accessDenied=accessDenied,)
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'GET':
+#         return render_template('layout.html')
+#     else:
+#         user = request.form.get('usernme')
+#         userPassword = request.form.get('password')
+#         bameUsers = db.child("BAMEusers").get()
+#         userList = bameUsers.val()
+#         # data = userList.values()
+#         # for data in userList.values():
+#         #     return data[0], data[1]
+#         if user == db.child("BAMEusers"). and userPassword == data[1]:
+#             return "you just signed in!"
+#         return "something went wrong!"
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    unsuccessful = 'Please check your credentials'
     if request.method == 'POST':
-        user = request.form.get('usernme')
-        userPassword = request.form.get('password')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        try:
+            user = auth.create_user_with_email_and_password(email, password)
+            auth.send_email_verification(user['idToken'])
+            return 'Login successsful'
+        except:
+            return render_template('layout.html', unsuc=unsuccessful)
+        # return render_template('layout.html')
+        # auth.send_email_verification(user['idToken'])
+
         # users = dict(username=user, password=userPassword)
-        db.child("BAMEusers").push([user, userPassword])
-        bameUsers = db.child("BAMEusers").get()
-        userList = bameUsers.val()
-        return render_template('layout.html', bameList=userList.values())
+        # # db.child("BAMEusers").push([user, userPassword])
+        # bameUsers = db.child("BAMEusers").get()
+        # userList = bameUsers.val()
+        # return render_template('layout.html', bameList=userList.values())
+
+@app.route('/profile/<username>')
+def profile(username):
+    return "hello world!"
 
     # return print(userList.values())
     # return render_template('layout.html', userList=userList.values())

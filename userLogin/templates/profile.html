@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% if business %}
+      <title>{{ business }}</title>
+    {% endif %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  	<!-- Optional theme -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  	<!-- Latest compiled and minified JavaScript -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+
+<body>
+{% if business %}
+  <h1>{{ business }}</h1>
+  <h2>{{ founder }}</h2>
+  <p>generic picture display here - of selected category</p>
+  <h6>Dynamic profile page</h6>
+  <hr>
+  <p>Year business started: {{ year }}</p>
+  <p>{{ category }}</p>
+  <p>{{ description }}</p>
+  <br>
+  {% if address %}
+  <h4>Business address:</h4>
+  <p>{{ address[0] }}</p>
+  <p>{{ address[1] }}</p>
+  <p>{{ address[2] }}</p>
+  <p>{{ address[3] }}</p>
+  <br>
+  {% endif %}
+
+  {% if email %}
+  <p>{{ email }}</p>
+  {% endif %}
+
+  {% if phone %}
+  <p>{{ phone }}</p>
+  {% endif %}
+
+  {% if web %}
+  <p>{{ web }}</p>
+  {% endif %}
+
+  {% if tweet %}
+  <p>{{ tweet }}</p>
+  {% endif %}
+
+  {% if insta %}
+  <p>{{ insta }}</p>
+  {% endif %}
+{% endif %}
+  <br>
+  <form action="/login" method="post">
+    <h2>Update Profile</h2>
+    <p>Enter your email and password to update this profile</p>
+    <label for="inputEmail">Email address</label>
+    <input type="email" id="inputEmail" name="email"  placeholder="Email address" required autofocus>
+    <label for="confirmEmail">Confirm email</label>
+    <input id="confirmEmail" type="email" name="confirmEmail" placeholder="Confirm email" required autofocus>
+    <br>
+    <label for="inputPassword">Password</label>
+    <input type="password" id="inputPassword" name="pass"  placeholder="Password" required>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+  </form>
+  <br>
+  <a href="/newBusiness">Add new business</a>
+  <br>
+  <a href="/">Exit</a>
+</body>
+
+
+</html>
