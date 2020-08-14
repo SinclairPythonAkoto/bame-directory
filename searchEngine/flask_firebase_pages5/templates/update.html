@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% if business %}
+      <title>{{ business }}</title>
+    {% endif %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  </head>
+  <body>
+    <form action="{{ url_for('updateProfile') }}" method="post">
+      <h2>Please enter your account details to register your business</h2>
+      <label for="inputEmail">Email address</label>
+      <input type="email" id="inputEmail" name="email"  placeholder="Email address" required autofocus>
+      <label for="confirmEmail">Confirm email</label>
+      <input id="confirmEmail" type="text" name="confirmEmail" placeholder="Confirm email" required autofocus>
+      <br>
+      <label for="inputPassword">Password</label>
+      <input type="password" id="inputPassword" name="pass"  placeholder="Password" required>
+      <br>
+      <label for="inputName">Enter your name: </label>
+      <input type="text" id="inputName" name="inputName" placeholder="Name" required>
+      <label for="businessName">Business Name</label>
+      <input type="text" id="businessName" name="businessName" placeholder="Business Name" required>
+      <br>
+      <label for="startYear">Year buisness started:</label>
+      <input type="date" id="startYear" name="startYear" placeholder="2019"><br>
+      <label for="selectCategory">Choose a category for your business</label>
+      <select id="selectCategory" name="selectCategory" required>
+        <option disabled selected value ="">Select your category</option>
+        <option value="arts">Arts & Media / Tech</option>
+        <option value="charity">Charities / Support Groups</option>
+        <option value="foods">Foods / Restaurants / Takeaways</option>
+        <option value="health">Health / Lifestyle / Sports & Recreation</option>
+        <option value="house">Housing / Property / construction services</option>
+        <option value="legal">Legal / Financial</option>
+        <option value="retail">Retail / Jewellery / Beauty & Cosmestics</option>
+      </select>
+      <br>
+      <textarea name="businessDescription" rows="8" cols="80" placeholder="Describe your business in a few sentences..." required></textarea>
+      <br>
+      <label for="keyWords">You can enter some key words to describe your business. This will help your users find your business within the directory</label>
+      <input type="text" name="keyWords" id="keyWords" placeholder="Place your keyword followed by a comma.." required>
+      <br>
+      <label for="web">Enter your business website (Optional):</label>
+      <input type="text" name="web" id="web" placeholder="Please start with https:// "><br>
+      <label for="insta">Enter your Instagram account (Optional):</label>
+      <input type="text" name="insta" id="insta" placeholder="Please start with https:// "><br>
+      <label for="tweet">Enter your Twitter account (Optional):</label>
+      <input type="text" name="tweet" id="tweet" placeholder="Please start with https:// "><br>
+      <label for="businessNumber">Buisness number (Optional):</label>
+      <input type="number" name="businessNumber" id="businessNumber" placeholder="Enter landline or mobile number.."><br>
+      <label for="businessAddress">Business address (Optional):</label><br>
+      <input type="text" name="businessAddress" id="businessAddress" placeholder="Enter first line of your business address">
+      <input type="text" name="businessTown" placeholder="Town">
+      <input type="text" name="businessCity" placeholder="City">
+      <input type="text" name="businessPostcode" placeholder="Postcode"><br>
+      <label for="businessEmail">Buisness email (Optional):</label>
+      <input type="email" name="businessEmail" id="businessEmail" placeholder="Enter your business email"><br>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Register business</button>
+    </form>
+    <br>
+    <a href="/">Exit</a>
+  </body>
+</html>
