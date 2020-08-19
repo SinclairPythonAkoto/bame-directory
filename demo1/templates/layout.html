@@ -10,6 +10,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(255,255,255, 0.3);
+  transition: 0.3s;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(255,255,255, 0.9);
+}
+
+.containerCard {
+  padding: 2px 16px;
+}
 body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color: white;}
 .w3-row-padding img {margin-bottom: 12px}
 .bgimg {
@@ -48,47 +61,55 @@ body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color:
         <br>
         <br>
         {% if business %}
-          <h1>{{ business }}</h1>
-          <h2>{{ founder }}</h2>
-          <p>generic picture display here - of selected category</p>
-          <h6>Dynamic profile page</h6>
-          <hr>
-          <p>Year business started: {{ year }}</p>
-          <p>{{ category }}</p>
-          <p>{{ description }}</p>
-          <br>
-          {% if address %}
-          <h4>Business address:</h4>
-          <p>{{ address[0] }}</p>
-          <p>{{ address[1] }}</p>
-          <p>{{ address[2] }}</p>
-          <p>{{ address[3] }}</p>
-          <br>
-          {% endif %}
+        <div class="card">
+          <img src="/static/BondRobotics_fingerprint.JPG" alt="Avatar" style="width:100%">
+          <div class="containerCard">
+            <h2><b>{{ business }}</b></h2>
+            <p>Founder: {{ founder }}</p>
+            <p>Year business started: {{ year }}</p>
+            <hr>
+            <p>{{ description }}</p>
+            <hr>
+            {% if address %}
+              <h4>Business address:</h4>
+              <p>{{ address[0] }}</p>
+              <p>{{ address[1] }}</p>
+              <p>{{ address[2] }}</p>
+              <p>{{ address[3] }}</p>
+              <br>
+            {% endif %}
+            <hr>
+            {% if email %}
+              <p>Email: {{ email }}</p>
+            {% endif %}
 
-          {% if email %}
-          <p>{{ email }}</p>
-          {% endif %}
+            {% if phone %}
+              <p>Contact: {{ phone }}</p>
+            {% endif %}
 
-          {% if phone %}
-          <p>{{ phone }}</p>
-          {% endif %}
+            {% if web %}
+              <p>Website: </p><a href="{{ web }}">{{ web }}</a>
+              <br>
+            {% endif %}
 
-          {% if web %}
-          <p>{{ web }}</p>
-          {% endif %}
+            {% if tweet %}
+              <p>Twitter: </p><a href="{{ Twitter }}">{{ Twitter }}</a>
+              <br>
+            {% endif %}
 
-          {% if tweet %}
-          <p>{{ tweet }}</p>
-          {% endif %}
-
-          {% if insta %}
-          <p>{{ insta }}</p>
-          {% endif %}
+            {% if insta %}
+              <p>Instagram: </p><a href="{{ Instagram }}">{{ Instagram }}</a>
+              <br>
+            {% endif %}
+            <br>
+          </div>
+        </div>
         {% endif %}
+
         {% if err %}
           {{ err }}
         {% endif %}
+
       </div>
     </form>
   </div>
