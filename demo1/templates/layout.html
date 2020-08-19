@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
-body, h1,h2,h3,h4,h5,h6, p {font-family: "Montserrat", sans-serif; color: white;}
+body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color: white;}
 .w3-row-padding img {margin-bottom: 12px}
 .bgimg {
   background-position: center;
@@ -24,6 +24,74 @@ body, h1,h2,h3,h4,h5,h6, p {font-family: "Montserrat", sans-serif; color: white;
 
 <!-- Sidebar with image -->
 <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%; background-color: black;">
+  <div class="container" style="width: 100%;">
+    <h1>Search BAME Directory</h1>
+    <label for="searchDirectoryInfo">
+      Please select a category and enter any keyword(s) accociated with the business you are looking for.
+    </label>
+    <form class="container" action="{{ url_for('search') }}" method="post" style="width: 100%;">
+      <select class="container" name="selectCategory" required style="width: 100%;">
+        <option disabled selected value="">Select your category</option>
+        <option value="arts">Arts / Media / Tech</option>
+				<option value="charites">Charities & Support Groups</option>
+				<option value="foods">Foods / Restaurants / Takeaways</option>
+				<option value="health">Health / Lifestyle / Sports & Recreation</option>
+				<option value="house">Housing / Property / construction services</option>
+				<option value="legal">Legal / Financial</option>
+				<option value="retail">Retail / Fashion / Jewellery / Beauty & Cosmetics</option>
+      </select>
+      <br><br>
+      <label for="keyWords">Please enter your key word followed by a comma: <i>i.e bycle, repair, bike peddal</i> </label>
+      <div class="input-group mb-3">
+        <input type="text" name="search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your keyword followed by a comma..">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="search_btn">Search directory</button>
+        <br>
+        <br>
+        {% if business %}
+          <h1>{{ business }}</h1>
+          <h2>{{ founder }}</h2>
+          <p>generic picture display here - of selected category</p>
+          <h6>Dynamic profile page</h6>
+          <hr>
+          <p>Year business started: {{ year }}</p>
+          <p>{{ category }}</p>
+          <p>{{ description }}</p>
+          <br>
+          {% if address %}
+          <h4>Business address:</h4>
+          <p>{{ address[0] }}</p>
+          <p>{{ address[1] }}</p>
+          <p>{{ address[2] }}</p>
+          <p>{{ address[3] }}</p>
+          <br>
+          {% endif %}
+
+          {% if email %}
+          <p>{{ email }}</p>
+          {% endif %}
+
+          {% if phone %}
+          <p>{{ phone }}</p>
+          {% endif %}
+
+          {% if web %}
+          <p>{{ web }}</p>
+          {% endif %}
+
+          {% if tweet %}
+          <p>{{ tweet }}</p>
+          {% endif %}
+
+          {% if insta %}
+          <p>{{ insta }}</p>
+          {% endif %}
+        {% endif %}
+        {% if err %}
+          {{ err }}
+        {% endif %}
+      </div>
+    </form>
+  </div>
   <!-- <div class="bgimg"></div> -->
 </nav>
 
