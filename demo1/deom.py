@@ -176,6 +176,10 @@ def search():
                         house_category=house_category, houseCat=houseCat)
                     else:
                         return render_template('house.html', err=err, house_category=house_category, houseCat=houseCat)
+        elif selectCategory == "legal":
+            pass
+        elif selectCategory == "retail":
+            pass
 
 if __name__ == '__main__':
     app.run(debug=True)
