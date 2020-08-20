@@ -46,7 +46,7 @@ body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color:
       <select class="container" name="selectCategory" required style="width: 100%;">
         <option disabled selected value="">Select your category</option>
         <option value="arts">Arts / Media / Tech</option>
-				<option value="charity">Charities & Support Groups</option>
+				<option value="charity">Charities / Support Groups / Educational Services</option>
 				<option value="foods">Foods / Restaurants / Takeaways</option>
 				<option value="health">Health / Lifestyle / Sports & Recreation</option>
 				<option value="house">Housing / Property / construction services</option>
@@ -125,9 +125,13 @@ body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color:
   </a>
   <div class="w3-bar-block w3-center">
     <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Search</a>
-    <a href="{{ url_for('artsCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Arts</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>
+    <a href="{{ url_for('artsCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Arts / Media / Tech</a>
+    <a href="{{ url_for('charityCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Charities / Support Groups / Educational Services</a>
+    <a href="{{ url_for('foodCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Foods / Restaurants / Takeaways</a>
+    <a href="{{ url_for('healthCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Health / Lifestyle / Sports & Recreation</a>
+    <a href="{{ url_for('houseCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Housing / Property / construction service</a>
+    <a href="{{ url_for('legalCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Legal / Financial</a>
+    <a href="{{ url_for('retailCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Retail / Fashion / Jewellery / Beauty & Cosmetics</a>
   </div>
 </nav>
 

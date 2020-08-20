@@ -241,7 +241,11 @@ def artsCategory():
 
 @app.route("/Charities-SupportGroups")
 def charityCategory():
-    pass
+    charityCategory = db.child("Bame_Business").child("business").child("charities_SupportGroups").get()
+    charityCat = [x.val() for x in charityCategory.each()]
+    charity_category = len(charityCat)
+    charity_category = range(charity_category)
+    return render_template('charity.html', charity_category=charity_category, charityCat=charityCat)
 
 @app.route("/Foods-Restaurants-Takeaways")
 def foodCategory():
