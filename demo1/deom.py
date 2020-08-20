@@ -274,7 +274,11 @@ def houseCategory():
 
 @app.route("/Legal-Financial")
 def legalCategory():
-    pass
+    legalCategory = db.child("Bame_Business").child("business").child("legal_Financial").get()
+    legalCat = [x.val() for x in legalCategory.each()]
+    legal_category = len(legalCat)
+    legal_category = range(legal_category)
+    return render_template('legal.html', legal_category=legal_category, legalCat=legalCat)
 
 @app.route("/Retail-Fashion-Jewellery-Beauty&Cosmetics")
 def retailCategory():
