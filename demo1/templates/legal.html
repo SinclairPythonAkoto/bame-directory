@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Legal & Financial Category page</h2>
+<hr class="w3-opacity">
+<p>
+  [ Description of the type of content found in this category; maybe backed up with promotionial content for the businesses ]
+</p>
+<p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<br><br>
+{% for i in legal_category %}
+<div class="card">
+  <img src="/static/legalCatPic.jpg" alt="Avatar" style="width:100%">
+  <div class="containerCard">
+    <h2><b>{{ legalCat[i]['businessName'] }}</b></h2>
+    <p>Founder: {{ legalCat[i]['userName'] }}</p>
+    <p>Year business started: {{ legalCat[i]['businessStartYear'] }}</p>
+    <hr>
+    <p>{{ legalCat[i]['businessDescription'] }}</p>
+    <hr>
+    {% if legalCat[i]['businessAddress'] %}
+      <h4>Business address:</h4>
+      <p>{{ legalCat[i]['businessAddress'][0] }}</p>
+      <p>{{ legalCat[i]['businessAddress'][1] }}</p>
+      <p>{{ legalCat[i]['businessAddress'][2] }}</p>
+      <p>{{ legalCat[i]['businessAddress'][3] }}</p>
+      <br>
+    {% endif %}
+    <hr>
+    {% if legalCat[i]['businessEmail'] %}
+      <p>Email: {{ legalCat[i]['businessEmail'] }}</p>
+    {% endif %}
+
+    {% if legalCat[i]['businessNumber'] %}
+      <p>Contact: {{ legalCat[i]['businessNumber'] }}</p>
+    {% endif %}
+
+    {% if legalCat[i]['businessURL'] %}
+      <p>Website: </p><a href="{{ legalCat[i]['businessURL'] }}">{{ legalCat[i]['businessURL'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if legalCat[i]['Twitter'] %}
+      <p>Twitter: </p><a href="{{ legalCat[i]['Twitter'] }}">{{ legalCat[i]['Twitter'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if legalCat[i]['Instagram'] %}
+      <p>Instagram: </p><a href="{{ legalCat[i]['Instagram'] }}">{{ legalCat[i]['Instagram'] }}</a>
+      <br>
+    {% endif %}
+    <br>
+  </div>
+</div>
+<br><br><br><br>
+{% endfor %}
+
+
+{% endblock %}

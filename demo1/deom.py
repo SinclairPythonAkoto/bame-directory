@@ -177,7 +177,32 @@ def search():
                     else:
                         return render_template('house.html', err=err, house_category=house_category, houseCat=houseCat)
         elif selectCategory == "legal":
-            pass
+            legalCategory = db.child("Bame_Business").child("business").child("legal_Financial").get()
+            legalCat = [x.val() for x in legalCategory.each()]
+            legal_category = len(legalCat)
+            legal_category = range(legal_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for y in legal_category:
+                    if search[x] in legalCat[y]['keyWords']:
+                        return render_template(
+                        'legal.html',
+                        business=legalCat[y]['businessName'],
+                        founder=legalCat[y]['userName'],
+                        year=legalCat[y]['businessStartYear'],
+                        category=legalCat[y]['businessCategory'],
+                        description=legalCat[y]['businessDescription'],
+                        address=legalCat[y]['businessAddress'],
+                        email=legalCat[y]['businessEmail'],
+                        phone=legalCat[y]['businessNumber'],
+                        web=legalCat[y]['businessURL'],
+                        tweet=legalCat[y]['Twitter'],
+                        insta=legalCat[y]['Instagram'],
+                        legal_category=legal_category, legalCat=legalCat)
+                    else:
+                        return render_template('legal.html', err=err, legal_category=legal_category, legalCat=legalCat)
         elif selectCategory == "retail":
             pass
 
