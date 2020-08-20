@@ -266,7 +266,11 @@ def healthCategory():
 
 @app.route("/Housing-Property-ConstructionServices")
 def houseCategory():
-    pass
+    houseCategory = db.child("Bame_Business").child("business").child("housing_Property_ConstructionServices").get()
+    houseCat = [x.val() for x in houseCategory.each()]
+    house_category = len(houseCat)
+    house_category = range(house_category)
+    return render_template('house.html', house_category=house_category, houseCat=houseCat)
 
 @app.route("/Legal-Financial")
 def legalCategory():
