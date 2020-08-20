@@ -106,7 +106,24 @@ def search():
             s = range(s)
             for x in s:
                 for y in food_category:
-                    pass
+                    if search[x] in foodCat[y]['keyWords']:
+                        return render_template(
+                        'food.html',
+                        business=foodCat[y]['businessName'],
+                        founder=foodCat[y]['userName'],
+                        year=foodCat[y]['businessStartYear'],
+                        category=foodCat[y]['businessCategory'],
+                        description=foodCat[y]['businessDescription'],
+                        address=foodCat[y]['businessAddress'],
+                        email=foodCat[y]['businessEmail'],
+                        phone=foodCat[y]['businessNumber'],
+                        web=foodCat[y]['businessURL'],
+                        tweet=foodCat[y]['Twitter'],
+                        insta=foodCat[y]['Instagram'],
+                        food_category=food_category, foodCat=foodCat)
+                    else:
+                        err = "Sorry, couldn't find what you were looking for. Please try again or scroll through the directory to find what you are looking for."
+                        return render_template('food.html', err=err, food_category=food_category, foodCat=foodCat)
 
 # @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
 # def artsCategory():

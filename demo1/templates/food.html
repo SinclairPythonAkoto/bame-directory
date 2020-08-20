@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Foods Category page</h2>
+<hr class="w3-opacity">
+<p>
+  [ Description of the type of content found in this category; maybe backed up with promotionial content for the businesses ]
+</p>
+<p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<br><br>
+{% for i in food_category %}
+<div class="card">
+  <img src="/static/foodCatPic.jpg" alt="Avatar" style="width:100%">
+  <div class="containerCard">
+    <h2><b>{{ foodCat[i]['businessName'] }}</b></h2>
+    <p>Founder: {{ foodCat[i]['userName'] }}</p>
+    <p>Year business started: {{ foodCat[i]['businessStartYear'] }}</p>
+    <hr>
+    <p>{{ foodCat[i]['businessDescription'] }}</p>
+    <hr>
+    {% if foodCat[i]['businessAddress'] %}
+      <h4>Business address:</h4>
+      <p>{{ foodCat[i]['businessAddress'][0] }}</p>
+      <p>{{ foodCat[i]['businessAddress'][1] }}</p>
+      <p>{{ foodCat[i]['businessAddress'][2] }}</p>
+      <p>{{ foodCat[i]['businessAddress'][3] }}</p>
+      <br>
+    {% endif %}
+    <hr>
+    {% if foodCat[i]['businessEmail'] %}
+      <p>Email: {{ foodCat[i]['businessEmail'] }}</p>
+    {% endif %}
+
+    {% if foodCat[i]['businessNumber'] %}
+      <p>Contact: {{ foodCat[i]['businessNumber'] }}</p>
+    {% endif %}
+
+    {% if foodCat[i]['businessURL'] %}
+      <p>Website: </p><a href="{{ foodCat[i]['businessURL'] }}">{{ foodCat[i]['businessURL'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if foodCat[i]['Twitter'] %}
+      <p>Twitter: </p><a href="{{ foodCat[i]['Twitter'] }}">{{ foodCat[i]['Twitter'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if foodCat[i]['Instagram'] %}
+      <p>Instagram: </p><a href="{{ foodCat[i]['Instagram'] }}">{{ foodCat[i]['Instagram'] }}</a>
+      <br>
+    {% endif %}
+    <br>
+  </div>
+</div>
+<br><br><br><br>
+{% endfor %}
+
+
+{% endblock %}
