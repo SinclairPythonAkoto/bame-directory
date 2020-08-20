@@ -29,6 +29,7 @@ def search():
     if request.method == 'POST':
         selectCategory = request.form.get("selectCategory")
         search = request.form.get("search")
+        err = "Sorry, couldn't find what you were looking for. Please try again or scroll through the directory to find what you are looking for."
         # search = search.split(", ")
         if selectCategory == "arts":
             # select the art category in the Firebase database
@@ -66,8 +67,7 @@ def search():
                         insta=artCat[y]['Instagram'],
                         art_category=art_category, artCat=artCat)
                     else:
-                        err = "Sorry, couldn't find what you were looking for. Please try again."
-                        return render_template('home.html', err=err)
+                        return render_template('arts.html', err=err, art_category=art_category, artCat=artCat)
         elif selectCategory == "charity":
             charityCategory = db.child("Bame_Business").child("business").child("charities_SupportGroups").get()
             charityCat = [x.val() for x in charityCategory.each()]
@@ -77,7 +77,7 @@ def search():
             s = len(search)
             s = range(s)
             for x in s:
-                for x in charity_category:
+                for y in charity_category:
                     if search[x] in charityCat[y]['keyWords']:
                         return render_template(
                         'charity.html',
@@ -94,8 +94,7 @@ def search():
                         insta=charityCat[y]['Instagram'],
                         charity_category=charity_category, charityCat=charityCat)
                     else:
-                        err = "Sorry, couldn't find what you were looking for. Please try again."
-                        return render_template('home.html', err=err)
+                        return render_template('charity.html', err=err, charity_category=charity_category, charityCat=charityCat)
         elif selectCategory == "foods":
             foodCategory = db.child("Bame_Business").child("business").child("foods_Restaurants_Takeaways").get()
             foodCat = [x.val() for x in foodCategory.each()]
@@ -122,7 +121,6 @@ def search():
                         insta=foodCat[y]['Instagram'],
                         food_category=food_category, foodCat=foodCat)
                     else:
-                        err = "Sorry, couldn't find what you were looking for. Please try again or scroll through the directory to find what you are looking for."
                         return render_template('food.html', err=err, food_category=food_category, foodCat=foodCat)
 
 # @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
