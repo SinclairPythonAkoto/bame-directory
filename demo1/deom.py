@@ -68,7 +68,34 @@ def search():
                     else:
                         err = "Sorry, couldn't find what you were looking for. Please try again."
                         return render_template('home.html', err=err)
-                        # return render_template("home.html", art_category=art_category, artCat=artCat)
+        elif selectCategory == "charity":
+            charityCategory = db.child("Bame_Business").child("business").child("charities_SupportGroups").get()
+            charityCat = [x.val() for x in charityCategory.each()]
+            charity_category = len(charityCat)
+            charity_category = range(charity_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for x in charity_category:
+                    if search[x] in charityCat[x]['keyWords']:
+                        return render_template(
+                        'charity.html',
+                        business=charityCat[x]['businessName'],
+                        founder=charityCat[x]['userName'],
+                        year=charityCat[x]['businessStartYear'],
+                        category=charityCat[x]['businessCategory'],
+                        description=charityCat[x]['businessDescription'],
+                        address=charityCat[x]['businessAddress'],
+                        email=charityCat[x]['businessEmail'],
+                        phone=charityCat[x]['businessNumber'],
+                        web=charityCat[x]['businessURL'],
+                        tweet=charityCat[x]['Twitter'],
+                        insta=charityCat[x]['Instagram'],
+                        charity_category=charity_category, charityCat=charityCat)
+                    else:
+                        err = "Sorry, couldn't find what you were looking for. Please try again."
+                        return render_template('home.html', err=err)
 
 # @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
 # def artsCategory():
