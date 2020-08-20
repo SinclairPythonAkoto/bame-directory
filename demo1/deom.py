@@ -239,5 +239,29 @@ def artsCategory():
     art_category = range(art_category)
     return render_template('arts.html', art_category=art_category, artCat=artCat)
 
+@app.route("/Charities-SupportGroups")
+def charityCategory():
+    pass
+
+@app.route("/Foods-Restaurants-Takeaways")
+def foodCategory():
+    pass
+
+@app.route("/Health-Lifestyle-Sports")
+def healthCategory():
+    pass
+
+@app.route("/Housing-Property-ConstructionServices")
+def houseCategory():
+    pass
+
+@app.route("/Legal-Financial")
+def legalCategory():
+    pass
+
+@app.route("/Retail-Fashion-Jewellery-Beauty&Cosmetics")
+def retailCategory():
+    pass
+
 if __name__ == '__main__':
     app.run(debug=True)
