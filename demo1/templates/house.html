@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Housing & Construction/Labouring Category page</h2>
+<hr class="w3-opacity">
+<p>
+  [ Description of the type of content found in this category; maybe backed up with promotionial content for the businesses ]
+</p>
+<p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<br><br>
+{% for i in house_category %}
+<div class="card">
+  <img src="/static/houseCatPic.jpg" alt="Avatar" style="width:100%">
+  <div class="containerCard">
+    <h2><b>{{ houseCat[i]['businessName'] }}</b></h2>
+    <p>Founder: {{ houseCat[i]['userName'] }}</p>
+    <p>Year business started: {{ houseCat[i]['businessStartYear'] }}</p>
+    <hr>
+    <p>{{ houseCat[i]['businessDescription'] }}</p>
+    <hr>
+    {% if houseCat[i]['businessAddress'] %}
+      <h4>Business address:</h4>
+      <p>{{ houseCat[i]['businessAddress'][0] }}</p>
+      <p>{{ houseCat[i]['businessAddress'][1] }}</p>
+      <p>{{ houseCat[i]['businessAddress'][2] }}</p>
+      <p>{{ houseCat[i]['businessAddress'][3] }}</p>
+      <br>
+    {% endif %}
+    <hr>
+    {% if houseCat[i]['businessEmail'] %}
+      <p>Email: {{ houseCat[i]['businessEmail'] }}</p>
+    {% endif %}
+
+    {% if houseCat[i]['businessNumber'] %}
+      <p>Contact: {{ houseCat[i]['businessNumber'] }}</p>
+    {% endif %}
+
+    {% if houseCat[i]['businessURL'] %}
+      <p>Website: </p><a href="{{ houseCat[i]['businessURL'] }}">{{ houseCat[i]['businessURL'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if houseCat[i]['Twitter'] %}
+      <p>Twitter: </p><a href="{{ houseCat[i]['Twitter'] }}">{{ houseCat[i]['Twitter'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if houseCat[i]['Instagram'] %}
+      <p>Instagram: </p><a href="{{ houseCat[i]['Instagram'] }}">{{ houseCat[i]['Instagram'] }}</a>
+      <br>
+    {% endif %}
+    <br>
+  </div>
+</div>
+<br><br><br><br>
+{% endfor %}
+
+
+{% endblock %}

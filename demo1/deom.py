@@ -149,15 +149,33 @@ def search():
                         health_category=health_category, healthCat=healthCat)
                     else:
                         return render_template('health.html', err=err, health_category=health_category, healthCat=healthCat)
-
-# @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
-# def artsCategory():
-#     if request.form == 'GET':
-#         artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get()
-#         artCat = [x.val() for x in artCategory.each()]
-#         art_category = len(artCat)
-#         art_category = range(art_category)
-#         return render_template('arts.html', art_category=art_category, artCat=artCat)
+        elif selectCategory == "house":
+            houseCategory = db.child("Bame_Business").child("business").child("housing_Property_ConstructionServices").get()
+            houseCat = [x.val() for x in houseCategory.each()]
+            house_category = len(houseCat)
+            house_category = range(house_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for y in house_category:
+                    if search[x] in houseCat[y]['keyWords']:
+                        return render_template(
+                        'house.html',
+                        business=houseCat[y]['businessName'],
+                        founder=houseCat[y]['userName'],
+                        year=houseCat[y]['businessStartYear'],
+                        category=houseCat[y]['businessCategory'],
+                        description=houseCat[y]['businessDescription'],
+                        address=houseCat[y]['businessAddress'],
+                        email=houseCat[y]['businessEmail'],
+                        phone=houseCat[y]['businessNumber'],
+                        web=houseCat[y]['businessURL'],
+                        tweet=houseCat[y]['Twitter'],
+                        insta=houseCat[y]['Instagram'],
+                        house_category=house_category, houseCat=houseCat)
+                    else:
+                        return render_template('house.html', err=err, house_category=house_category, houseCat=houseCat)
 
 if __name__ == '__main__':
     app.run(debug=True)
