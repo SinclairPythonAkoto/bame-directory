@@ -124,7 +124,7 @@ body, h1,h2,h3,h4,h5,h6, p, label {font-family: "Montserrat", sans-serif; color:
     <i class="fa fa-remove"></i>
   </a>
   <div class="w3-bar-block w3-center">
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Search</a>
+    <a href="{{ url_for('searchDirectory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Search</a>
     <a href="{{ url_for('artsCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Arts / Media / Tech</a>
     <a href="{{ url_for('charityCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Charities / Support Groups / Educational Services</a>
     <a href="{{ url_for('foodCategory') }}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Foods / Restaurants / Takeaways</a>

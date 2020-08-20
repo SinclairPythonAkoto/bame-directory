@@ -287,6 +287,12 @@ def retailCategory():
     retail_category = len(retailCat)
     retail_category = range(retail_category)
     return render_template('retail.html', retail_category=retail_category, retailCat=retailCat)
+#
+@app.route("/searchDeirectory", methods=['GET', 'POST'])
+def searchDirectory():
+    if request.method == 'GET':
+        # now duplicate the same function as the search route
+        return render_template('searchDirectory.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
