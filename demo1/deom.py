@@ -282,7 +282,11 @@ def legalCategory():
 
 @app.route("/Retail-Fashion-Jewellery-Beauty&Cosmetics")
 def retailCategory():
-    pass
+    retailCategory = db.child("Bame_Business").child("business").child("retail_Fashion_Jewellery").get()
+    retailCat = [x.val() for x in retailCategory.each()]
+    retail_category = len(retailCat)
+    retail_category = range(retail_category)
+    return render_template('retail.html', retail_category=retail_category, retailCat=retailCat)
 
 if __name__ == '__main__':
     app.run(debug=True)
