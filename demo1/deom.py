@@ -122,6 +122,33 @@ def search():
                         food_category=food_category, foodCat=foodCat)
                     else:
                         return render_template('food.html', err=err, food_category=food_category, foodCat=foodCat)
+        elif selectCategory == "health":
+            healthCategory = db.child("Bame_Business").child("business").child("health_Lifestyle_Sports").get()
+            healthCat = [x.val() for x in healthCategory.each()]
+            health_category = len(healthCat)
+            health_category = range(health_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for y in health_category:
+                    if search[x] in healthCat[y]['keyWords']:
+                        return render_template(
+                        'health.html',
+                        business=healthCat[y]['businessName'],
+                        founder=healthCat[y]['userName'],
+                        year=healthCat[y]['businessStartYear'],
+                        category=healthCat[y]['businessCategory'],
+                        description=healthCat[y]['businessDescription'],
+                        address=healthCat[y]['businessAddress'],
+                        email=healthCat[y]['businessEmail'],
+                        phone=healthCat[y]['businessNumber'],
+                        web=healthCat[y]['businessURL'],
+                        tweet=healthCat[y]['Twitter'],
+                        insta=healthCat[y]['Instagram'],
+                        health_category=health_category, healthCat=healthCat)
+                    else:
+                        return render_template('health.html', err=err, health_category=health_category, healthCat=healthCat)
 
 # @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
 # def artsCategory():
