@@ -204,7 +204,32 @@ def search():
                     else:
                         return render_template('legal.html', err=err, legal_category=legal_category, legalCat=legalCat)
         elif selectCategory == "retail":
-            pass
+            retailCategory = db.child("Bame_Business").child("business").child("retail_Fashion_Jewellery").get()
+            retailCat = [x.val() for x in retailCategory.each()]
+            retail_category = len(retailCat)
+            retail_category = range(retail_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for y in retail_category:
+                    if search[x] in retailCat[y]['keyWords']:
+                        return render_template(
+                        'retail.html',
+                        business=retailCat[y]['businessName'],
+                        founder=retailCat[y]['userName'],
+                        year=retailCat[y]['businessStartYear'],
+                        category=retailCat[y]['businessCategory'],
+                        description=retailCat[y]['businessDescription'],
+                        address=retailCat[y]['businessAddress'],
+                        email=retailCat[y]['businessEmail'],
+                        phone=retailCat[y]['businessNumber'],
+                        web=retailCat[y]['businessURL'],
+                        tweet=retailCat[y]['Twitter'],
+                        insta=retailCat[y]['Instagram'],
+                        retail_category=retail_category, retailCat=retailCat)
+                    else:
+                        return render_template('retail.html', err=err, retail_category=retail_category, retailCat=retailCat)
 
 if __name__ == '__main__':
     app.run(debug=True)
