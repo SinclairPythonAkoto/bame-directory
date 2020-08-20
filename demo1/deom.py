@@ -78,24 +78,35 @@ def search():
             s = range(s)
             for x in s:
                 for x in charity_category:
-                    if search[x] in charityCat[x]['keyWords']:
+                    if search[x] in charityCat[y]['keyWords']:
                         return render_template(
                         'charity.html',
-                        business=charityCat[x]['businessName'],
-                        founder=charityCat[x]['userName'],
-                        year=charityCat[x]['businessStartYear'],
-                        category=charityCat[x]['businessCategory'],
-                        description=charityCat[x]['businessDescription'],
-                        address=charityCat[x]['businessAddress'],
-                        email=charityCat[x]['businessEmail'],
-                        phone=charityCat[x]['businessNumber'],
-                        web=charityCat[x]['businessURL'],
-                        tweet=charityCat[x]['Twitter'],
-                        insta=charityCat[x]['Instagram'],
+                        business=charityCat[y]['businessName'],
+                        founder=charityCat[y]['userName'],
+                        year=charityCat[y]['businessStartYear'],
+                        category=charityCat[y]['businessCategory'],
+                        description=charityCat[y]['businessDescription'],
+                        address=charityCat[y]['businessAddress'],
+                        email=charityCat[y]['businessEmail'],
+                        phone=charityCat[y]['businessNumber'],
+                        web=charityCat[y]['businessURL'],
+                        tweet=charityCat[y]['Twitter'],
+                        insta=charityCat[y]['Instagram'],
                         charity_category=charity_category, charityCat=charityCat)
                     else:
                         err = "Sorry, couldn't find what you were looking for. Please try again."
                         return render_template('home.html', err=err)
+        elif selectCategory == "foods":
+            foodCategory = db.child("Bame_Business").child("business").child("foods_Restaurants_Takeaways").get()
+            foodCat = [x.val() for x in foodCategory.each()]
+            food_category = len(foodCat)
+            food_category = range(food_category)
+            search = search.split(", ")
+            s = len(search)
+            s = range(s)
+            for x in s:
+                for y in food_category:
+                    pass
 
 # @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
 # def artsCategory():

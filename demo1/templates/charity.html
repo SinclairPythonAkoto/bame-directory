@@ -12,45 +12,45 @@
   elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </p>
 <br><br>
-{% for x in charity_category %}
+{% for i in charity_category %}
 <div class="card">
   <img src="/static/charityCatPic.jpg" alt="Avatar" style="width:100%">
   <div class="containerCard">
-    <h2><b>{{ charityCat[x]['businessName'] }}</b></h2>
-    <p>Founder: {{ charityCat[x]['userName'] }}</p>
-    <p>Year business started: {{ charityCat[x]['businessStartYear'] }}</p>
+    <h2><b>{{ charityCat[i]['businessName'] }}</b></h2>
+    <p>Founder: {{ charityCat[i]['userName'] }}</p>
+    <p>Year business started: {{ charityCat[i]['businessStartYear'] }}</p>
     <hr>
-    <p>{{ charityCat[x]['businessDescription'] }}</p>
+    <p>{{ charityCat[i]['businessDescription'] }}</p>
     <hr>
-    {% if charityCat[x]['businessAddress'] %}
+    {% if charityCat[i]['businessAddress'] %}
       <h4>Business address:</h4>
-      <p>{{ charityCat[x]['businessAddress'][0] }}</p>
-      <p>{{ charityCat[x]['businessAddress'][1] }}</p>
-      <p>{{ charityCat[x]['businessAddress'][2] }}</p>
-      <p>{{ charityCat[x]['businessAddress'][3] }}</p>
+      <p>{{ charityCat[i]['businessAddress'][0] }}</p>
+      <p>{{ charityCat[i]['businessAddress'][1] }}</p>
+      <p>{{ charityCat[i]['businessAddress'][2] }}</p>
+      <p>{{ charityCat[i]['businessAddress'][3] }}</p>
       <br>
     {% endif %}
     <hr>
-    {% if charityCat[x]['businessEmail'] %}
-      <p>Email: {{ charityCat[x]['businessEmail'] }}</p>
+    {% if charityCat[i]['businessEmail'] %}
+      <p>Email: {{ charityCat[i]['businessEmail'] }}</p>
     {% endif %}
 
-    {% if charityCat[x]['businessNumber'] %}
-      <p>Contact: {{ charityCat[x]['businessNumber'] }}</p>
+    {% if charityCat[i]['businessNumber'] %}
+      <p>Contact: {{ charityCat[i]['businessNumber'] }}</p>
     {% endif %}
 
-    {% if charityCat[x]['businessURL'] %}
-      <p>Website: </p><a href="{{ charityCat[x]['businessURL'] }}">{{ charityCat[x]['businessURL'] }}</a>
+    {% if charityCat[i]['businessURL'] %}
+      <p>Website: </p><a href="{{ charityCat[i]['businessURL'] }}">{{ charityCat[i]['businessURL'] }}</a>
       <br>
     {% endif %}
 
-    {% if charityCat[x]['Twitter'] %}
-      <p>Twitter: </p><a href="{{ charityCat[x]['Twitter'] }}">{{ charityCat[x]['Twitter'] }}</a>
+    {% if charityCat[i]['Twitter'] %}
+      <p>Twitter: </p><a href="{{ charityCat[i]['Twitter'] }}">{{ charityCat[i]['Twitter'] }}</a>
       <br>
     {% endif %}
 
-    {% if charityCat[x]['Instagram'] %}
-      <p>Instagram: </p><a href="{{ charityCat[x]['Instagram'] }}">{{ charityCat[x]['Instagram'] }}</a>
+    {% if charityCat[i]['Instagram'] %}
+      <p>Instagram: </p><a href="{{ charityCat[i]['Instagram'] }}">{{ charityCat[i]['Instagram'] }}</a>
       <br>
     {% endif %}
     <br>
