@@ -232,6 +232,7 @@ def search():
                         return render_template('retail.html', err=err, retail_category=retail_category, retailCat=retailCat)
 
 @app.route("/Arts-Media-Tech")
+# this will take you to arts category html page
 def artsCategory():
     artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get()
     artCat = [x.val() for x in artCategory.each()]
@@ -257,7 +258,11 @@ def foodCategory():
 
 @app.route("/Health-Lifestyle-Sports")
 def healthCategory():
-    pass
+    healthCategory = db.child("Bame_Business").child("business").child("health_Lifestyle_Sports").get()
+    healthCat = [x.val() for x in healthCategory.each()]
+    health_category = len(healthCat)
+    health_category = range(health_category)
+    return render_template('health.html', health_category=health_category, healthCat=healthCat)
 
 @app.route("/Housing-Property-ConstructionServices")
 def houseCategory():
