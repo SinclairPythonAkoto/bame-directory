@@ -2,6 +2,53 @@
 
 {% block content %}
 
-<h1>Arts Category Page</h1>
+  <h1>Arts Category</h1>
+  {% for x in art_category %}
+  <div class="card">
+    <img src="/static/BondRobotics_fingerprint.JPG" alt="Avatar" style="width:80%">
+    <div class="containerCard">
+      <h2><b>{{ artCat[x]['businessName'] }}</b></h2>
+      <p>Founder: {{ artCat[x]['userName'] }}</p>
+      <p>Year business started: {{ artCat[x]['businessStartYear'] }}</p>
+      <hr>
+      <p>{{ artCat[x]['businessDescription'] }}</p>
+      <hr>
+      {% if artCat[x]['businessAddress'] %}
+        <h4>Business address:</h4>
+        <p>{{ artCat[x]['businessAddress'][0] }}</p>
+        <p>{{ artCat[x]['businessAddress'][1] }}</p>
+        <p>{{ artCat[x]['businessAddress'][2] }}</p>
+        <p>{{ artCat[x]['businessAddress'][3] }}</p>
+        <br>
+      {% endif %}
+      <hr>
+      {% if artCat[x]['businessEmail'] %}
+        <p>Email: {{ artCat[x]['businessEmail'] }}</p>
+      {% endif %}
+
+      {% if artCat[x]['businessNumber'] %}
+        <p>Contact: {{ artCat[x]['businessNumber'] }}</p>
+      {% endif %}
+
+      {% if artCat[x]['businessURL'] %}
+        <p>Website: </p><a href="{{ artCat[x]['businessURL'] }}">{{ artCat[x]['businessURL'] }}</a>
+        <br>
+      {% endif %}
+
+      {% if artCat[x]['Twitter'] %}
+        <p>Twitter: </p><a href="{{ artCat[x]['Twitter'] }}">{{ artCat[x]['Twitter'] }}</a>
+        <br>
+      {% endif %}
+
+      {% if artCat[x]['Instagram'] %}
+        <p>Instagram: </p><a href="{{ artCat[x]['Instagram'] }}">{{ artCat[x]['Instagram'] }}</a>
+        <br>
+      {% endif %}
+      <br>
+    </div>
+  </div>
+  <br><br><br><br>
+  {% endfor %}
+
 
 {% endblock %}

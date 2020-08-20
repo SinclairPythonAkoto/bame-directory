@@ -63,11 +63,21 @@ def search():
                         phone=artCat[y]['businessNumber'],
                         web=artCat[y]['businessURL'],
                         tweet=artCat[y]['Twitter'],
-                        insta=artCat[y]['Instagram'])
+                        insta=artCat[y]['Instagram'],
+                        art_category=art_category, artCat=artCat)
                     else:
                         err = "Sorry, couldn't find what you were looking for. Please try again."
                         return render_template('home.html', err=err)
                         # return render_template("home.html", art_category=art_category, artCat=artCat)
+
+# @app.route("/Arts-Media-Tech-Category", methods=['GET', 'POST']) # this is for post (when searching through the category)
+# def artsCategory():
+#     if request.form == 'GET':
+#         artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get()
+#         artCat = [x.val() for x in artCategory.each()]
+#         art_category = len(artCat)
+#         art_category = range(art_category)
+#         return render_template('arts.html', art_category=art_category, artCat=artCat)
 
 if __name__ == '__main__':
     app.run(debug=True)
