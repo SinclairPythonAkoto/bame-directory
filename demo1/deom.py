@@ -231,5 +231,13 @@ def search():
                     else:
                         return render_template('retail.html', err=err, retail_category=retail_category, retailCat=retailCat)
 
+@app.route("/Arts-Media-Tech")
+def artsCategory():
+    artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get()
+    artCat = [x.val() for x in artCategory.each()]
+    art_category = len(artCat)
+    art_category = range(art_category)
+    return render_template('arts.html', art_category=art_category, artCat=artCat)
+
 if __name__ == '__main__':
     app.run(debug=True)
