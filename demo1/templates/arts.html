@@ -2,56 +2,62 @@
 
 {% block content %}
 
-  <h1>Arts Category</h1>
-  <p>
-    [ Description of the type of content found in this category; maybe backed up with promotionial content for the businesses ]
-  </p>
-  {% for x in art_category %}
-  <div class="card">
-    <img src="/static/artsCatPic.jpg" alt="Avatar" style="width:80%">
-    <div class="containerCard">
-      <h2><b>{{ artCat[x]['businessName'] }}</b></h2>
-      <p>Founder: {{ artCat[x]['userName'] }}</p>
-      <p>Year business started: {{ artCat[x]['businessStartYear'] }}</p>
-      <hr>
-      <p>{{ artCat[x]['businessDescription'] }}</p>
-      <hr>
-      {% if artCat[x]['businessAddress'] %}
-        <h4>Business address:</h4>
-        <p>{{ artCat[x]['businessAddress'][0] }}</p>
-        <p>{{ artCat[x]['businessAddress'][1] }}</p>
-        <p>{{ artCat[x]['businessAddress'][2] }}</p>
-        <p>{{ artCat[x]['businessAddress'][3] }}</p>
-        <br>
-      {% endif %}
-      <hr>
-      {% if artCat[x]['businessEmail'] %}
-        <p>Email: {{ artCat[x]['businessEmail'] }}</p>
-      {% endif %}
-
-      {% if artCat[x]['businessNumber'] %}
-        <p>Contact: {{ artCat[x]['businessNumber'] }}</p>
-      {% endif %}
-
-      {% if artCat[x]['businessURL'] %}
-        <p>Website: </p><a href="{{ artCat[x]['businessURL'] }}">{{ artCat[x]['businessURL'] }}</a>
-        <br>
-      {% endif %}
-
-      {% if artCat[x]['Twitter'] %}
-        <p>Twitter: </p><a href="{{ artCat[x]['Twitter'] }}">{{ artCat[x]['Twitter'] }}</a>
-        <br>
-      {% endif %}
-
-      {% if artCat[x]['Instagram'] %}
-        <p>Instagram: </p><a href="{{ artCat[x]['Instagram'] }}">{{ artCat[x]['Instagram'] }}</a>
-        <br>
-      {% endif %}
+<h2>Arts Category page</h2>
+<hr class="w3-opacity">
+<p>
+  [ Description of the type of content found in this category; maybe backed up with promotionial content for the businesses ]
+</p>
+<p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+<br><br>
+{% for x in art_category %}
+<div class="card">
+  <img src="/static/artsCatPic.jpg" alt="Avatar" style="width:80%">
+  <div class="containerCard">
+    <h2><b>{{ artCat[x]['businessName'] }}</b></h2>
+    <p>Founder: {{ artCat[x]['userName'] }}</p>
+    <p>Year business started: {{ artCat[x]['businessStartYear'] }}</p>
+    <hr>
+    <p>{{ artCat[x]['businessDescription'] }}</p>
+    <hr>
+    {% if artCat[x]['businessAddress'] %}
+      <h4>Business address:</h4>
+      <p>{{ artCat[x]['businessAddress'][0] }}</p>
+      <p>{{ artCat[x]['businessAddress'][1] }}</p>
+      <p>{{ artCat[x]['businessAddress'][2] }}</p>
+      <p>{{ artCat[x]['businessAddress'][3] }}</p>
       <br>
-    </div>
+    {% endif %}
+    <hr>
+    {% if artCat[x]['businessEmail'] %}
+      <p>Email: {{ artCat[x]['businessEmail'] }}</p>
+    {% endif %}
+
+    {% if artCat[x]['businessNumber'] %}
+      <p>Contact: {{ artCat[x]['businessNumber'] }}</p>
+    {% endif %}
+
+    {% if artCat[x]['businessURL'] %}
+      <p>Website: </p><a href="{{ artCat[x]['businessURL'] }}">{{ artCat[x]['businessURL'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if artCat[x]['Twitter'] %}
+      <p>Twitter: </p><a href="{{ artCat[x]['Twitter'] }}">{{ artCat[x]['Twitter'] }}</a>
+      <br>
+    {% endif %}
+
+    {% if artCat[x]['Instagram'] %}
+      <p>Instagram: </p><a href="{{ artCat[x]['Instagram'] }}">{{ artCat[x]['Instagram'] }}</a>
+      <br>
+    {% endif %}
+    <br>
   </div>
-  <br><br><br><br>
-  {% endfor %}
+</div>
+<br><br><br><br>
+{% endfor %}
 
 
 {% endblock %}
