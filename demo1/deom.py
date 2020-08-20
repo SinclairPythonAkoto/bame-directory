@@ -249,7 +249,11 @@ def charityCategory():
 
 @app.route("/Foods-Restaurants-Takeaways")
 def foodCategory():
-    pass
+    foodCategory = db.child("Bame_Business").child("business").child("foods_Restaurants_Takeaways").get()
+    foodCat = [x.val() for x in foodCategory.each()]
+    food_category = len(foodCat)
+    food_category = range(food_category)
+    return render_template('food.html', food_category=food_category, foodCat=foodCat)
 
 @app.route("/Health-Lifestyle-Sports")
 def healthCategory():
