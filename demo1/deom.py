@@ -494,7 +494,38 @@ def register():
         email = request.form.get("email")
         confirmEmail = request.form.get("confirmEmail")
         password = request.form.get("pass")
-        
+        firstname = request.form.get("firstName")
+        lastName = request.form.get("lastName")
+        businessName = request.form.get("businessName")
+        startYear = request.form.get("startYear")
+        selectCategory = request.form.get("selectCategory")
+        businessDescription = request.form.get("businessDescription")
+        keyWords = request.form.get("keyWords")
+        businessEmail = request.form.get("businessEmail")
+        businessNumber = request.form.get("businessNumber")
+        businessAddress = request.form.get("businessAddress")
+        businessTown = request.form.get("businessTown")
+        businessCity = request.form.get("businessCity")
+        businessPostcode = request.form.get("businessPostcode")
+        web = request.form.get("web")
+        insta = request.form.get("insta")
+        tweet = request.form.get("tweet")
+        bameRegister = dict(
+            firstName = firstName,
+            lastName = lastName,
+            confirmEmail = confirmEmail,
+            businessName = businessName,
+            businessStartYear = startYear,
+            businessCategory = selectCategory,
+            businessDescription = businessDescription,
+            keyWords = keyWords,
+            businessEmail = businessEmail,
+            businessNumber = businessNumber,
+            businessAddress = [businessAddress, businessTown, businessCity, businessPostcode],
+            businessURL = web,
+            Instagram = insta,
+            Twitter = tweet,
+        )
 
 if __name__ == '__main__':
     app.run(debug=True)
