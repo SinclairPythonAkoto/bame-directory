@@ -22,7 +22,7 @@ db = firebase.database()
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template("layout.html")
+    return render_template("home.html")
 
 @app.route("/search", methods=['GET','POST'])
 def search():
