@@ -486,5 +486,15 @@ def searchDirectory():
                     else:
                         return render_template('retail.html', err=err, retail_category=retail_category, retailCat=retailCat)
 
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template('home.html')
+    else:
+        email = request.form.get("email")
+        confirmEmail = request.form.get("confirmEmail")
+        password = request.form.get("pass")
+        
+
 if __name__ == '__main__':
     app.run(debug=True)
