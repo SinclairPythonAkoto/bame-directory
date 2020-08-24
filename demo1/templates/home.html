@@ -19,83 +19,95 @@
     It's easy to be featured in the BAME directory, all you need to do is register your business.
     <b>Firstly, we need to create an account!</b><br>
   </p><br>
+  <!-- {% if err %}
+    <div class="alert alert-danger">
+      <b>{{ err }}</b>
+    </div>
+  {% endif %} -->
   <h3>Create Account</h3>
-  <label for="inputEmail">Email </label>
-  <input id="inputEmail" type="email" name="email" placeholder="someone@example.com" required autofocus><br>
-  <label for="confirmEmail">Confirm email</label>
-  <input id="confirmEmail" type="email" name="confirmEmail" placeholder="someone@example.com" required autofocus><br>
-  <i><b>Please provide a password with at least 6 characters</b></i><br>
-  <label for="inputPassword">Password</label><br>
-  <input id="inputPassword" type="password" name="password" placeholder="minimum 6 characters" required autofocus>
-  <hr>
-  <h3>Your Business</h3>
-  <label for="firstName">First Name: </label>
-  <input id="firstName" type="text" name="firstName" placeholder="First name" required autofocus><br>
-  <label for="lastName">Last Name: </label>
-  <input id="lastName" type="text" name="lastName" placeholder="Last name" required autofocus><br>
-  <label for="businessName">Business Name: </label>
-  <input id="businessName" type="text" name="businessName" placeholder="Name of business" required autofocus><br>
-  <label for="startYear">Year Business Started: </label>
-  <input id="startYear" type="number" name="startYear" placeholder="2020" required autofocus><br>
-  <label for="selectCategory">Choose a Category For Your Business: </label>
-  <select id="selectCategory" name="selectCategory" required>
-    <option disabled selected value="">Select your category</option>
-    <option value="arts">Arts / Media / Tech</option>
-    <option value="charity">Charities / Support Groups / Educational Services</option>
-    <option value="foods">Foods / Restaurants / Takeaways</option>
-    <option value="health">Health / Lifestyle / Sports & Recreation</option>
-    <option value="house">Housing / Property / construction services</option>
-    <option value="legal">Legal / Financial</option>
-    <option value="retail">Retail / Fashion / Jewellery / Beauty & Cosmetics</option>
-  </select><br>
-  <label for="businessDescription">Business Description: </label><br>
-  <textarea id="businessDescription" name="businessDescription" rows="8" cols="80" placeholder="Describe your business in a few sentences..." required></textarea><br>
-  <label for="keyWords">Enter Keywords Associated With Your Business</label><br>
-  <i><b>Please write as many key words as possible (minimum 15)</b></i><br>
-  <!-- maybe include the different categories to tag -->
-  <!-- type of business (not just the category), location of city, town, borough, key features/discounts -->
-  <textarea id="keyWords" name="keyWords" rows="8" cols="80" placeholder="Leave a comma after each keyword... i.e. laptops, mobile phone repairs, London, tablets, refurbished, etc" required></textarea><br>
-  <hr>
-  <h4>Contact</h4>
-  <label for="contactSummary">
-    In order to maximize the full potential of the BAME directory, you will need to provide at least <b>ONE</b>
-    of the following:
-    <li>Email address</li>
-    <li>Contact number</li>
-  </label><br>
-  <label for="businessEmail">Email: </label><br>
-  <i><b>If you do not have a business address, please use the same email used for your user login as an easy reference!</b></i>
-  <input id="businessEmail" type="text" name="businessEmail" placeholder="Email address"><br>
-  <label for="businessNumber">Contact: </label><br>
-  <i><b>Please provide either a landline or a mobile number.  Only provide a number you are comfortable sharing to the public.</b></i>
-  <input id="businessNumber" type="text" name="businessNumber" placeholder="Landline/Mobile">
-  <hr>
-  <h4>Business Address</h4>
-  <label for="businessAddressSummary">
-    If you do not have a business address, you can still enter the name of the city your business operates in.
-    If your business has multiple locations, then please provide the headquaters or the location with the most
-    frequent business.
-  </label><br>
-  <label for="businessAddress">Enter the first line of your adress</label>
-  <input id="businessAddress" type="text" name="businessAddress" placeholder="Enter the first line of your address.."><br>
-  <label for="businessTown">Town: </label>
-  <input id="businessTown" type="text" name="businessTown" placeholder="Town">
-  <label for="businessCity">City: </label>
-  <input id="businessCity" type="text" name="businessCity" placeholder="City" required autofocus>
-  <label for="businessPostcode">Postcode: </label>
-  <input id="businessPostcode" type="text" name="businessPostcode" placeholder="Postcode">
-  <hr>
-  <h4>Online Platforms</h4>
-  <label for="web">Business Website <i><b>(Optional)</b></i>: </label>
-  <input id="web" type="text" name="web" placeholder="Enter business website"><br>
-  <label for="insta">Instagram <i><b>(Optional)</b></i>: </label>
-  <input id="insta" type="text" name="insta" placeholder="Instagram account"><br>
-  <label for="tweet">Twitter <i><b>(Optional)</b></i>: </label>
-  <input id="tweet" type="text" name="tweet" placeholder="Twitter account"><br>
-  <br>
-  <br>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" name="button">Register Business</button>
+  <form class="registrationForm" action="{{ url_for('register') }}" method="post">
+    <label for="inputEmail">Email </label>
+    <input id="inputEmail" type="email" name="email" placeholder="someone@example.com" required autofocus><br>
+    <label for="confirmEmail">Confirm email</label>
+    <input id="confirmEmail" type="email" name="confirmEmail" placeholder="someone@example.com" required autofocus><br>
+    <i><b>Please provide a password with at least 6 characters</b></i><br>
+    <label for="inputPassword">Password</label><br>
+    <input id="inputPassword" type="password" name="password" placeholder="minimum 6 characters" required autofocus>
+    <hr>
+    <h3>Your Business</h3>
+    <label for="firstName">First Name: </label>
+    <input id="firstName" type="text" name="firstName" placeholder="First name" required autofocus><br>
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" type="text" name="lastName" placeholder="Last name" required autofocus><br>
+    <label for="businessName">Business Name: </label>
+    <input id="businessName" type="text" name="businessName" placeholder="Name of business" required autofocus><br>
+    <label for="startYear">Year Business Started: </label>
+    <input id="startYear" type="number" name="startYear" placeholder="2020" required autofocus><br>
+    <label for="selectCategory">Choose a Category For Your Business: </label>
+    <select id="selectCategory" name="selectCategory" required>
+      <option disabled selected value="">Select your category</option>
+      <option value="arts">Arts / Media / Tech</option>
+      <option value="charity">Charities / Support Groups / Educational Services</option>
+      <option value="foods">Foods / Restaurants / Takeaways</option>
+      <option value="health">Health / Lifestyle / Sports & Recreation</option>
+      <option value="house">Housing / Property / construction services</option>
+      <option value="legal">Legal / Financial</option>
+      <option value="retail">Retail / Fashion / Jewellery / Beauty & Cosmetics</option>
+    </select><br>
+    <label for="businessDescription">Business Description: </label><br>
+    <textarea id="businessDescription" name="businessDescription" rows="8" cols="80" placeholder="Describe your business in a few sentences..." required></textarea><br>
+    <label for="keyWords">Enter Keywords Associated With Your Business</label><br>
+    <i><b>Please write as many key words as possible (minimum 15)</b></i><br>
+    <!-- maybe include the different categories to tag -->
+    <!-- type of business (not just the category), location of city, town, borough, key features/discounts -->
+    <textarea id="keyWords" name="keyWords" rows="8" cols="80" placeholder="Leave a comma after each keyword... i.e. laptops, mobile phone repairs, London, tablets, refurbished, etc" required></textarea><br>
+    <hr>
+    <h4>Contact</h4>
+    <label for="contactSummary">
+      In order to maximize the full potential of the BAME directory, you will need to provide at least <b>ONE</b>
+      of the following:
+      <li>Email address</li>
+      <li>Contact number</li>
+    </label><br>
+    <label for="businessEmail">Email: </label><br>
+    <i><b>If you do not have a business address, please use the same email used for your user login as an easy reference!</b></i>
+    <input id="businessEmail" type="email" name="businessEmail" placeholder="Email address"><br>
+    <label for="businessNumber">Contact: </label><br>
+    <i><b>Please provide either a landline or a mobile number.  Only provide a number you are comfortable sharing to the public.</b></i>
+    <input id="businessNumber" type="number" name="businessNumber" placeholder="Landline/Mobile">
+    <hr>
+    <h4>Business Address</h4>
+    <label for="businessAddressSummary">
+      If you do not have a business address, you can still enter the name of the city your business operates in.
+      If your business has multiple locations, then please provide the headquaters or the location with the most
+      frequent business.
+    </label><br>
+    <label for="businessAddress">Enter the first line of your adress</label>
+    <input id="businessAddress" type="text" name="businessAddress" placeholder="Enter the first line of your address.."><br>
+    <label for="businessTown">Town: </label>
+    <input id="businessTown" type="text" name="businessTown" placeholder="Town">
+    <label for="businessCity">City: </label>
+    <input id="businessCity" type="text" name="businessCity" placeholder="City" required autofocus>
+    <label for="businessPostcode">Postcode: </label>
+    <input id="businessPostcode" type="text" name="businessPostcode" placeholder="Postcode">
+    <hr>
+    <h4>Online Platforms</h4>
+    <label for="web">Business Website <i><b>(Optional)</b></i>: </label>
+    <input id="web" type="text" name="web" placeholder="Enter business website"><br>
+    <label for="insta">Instagram <i><b>(Optional)</b></i>: </label>
+    <input id="insta" type="text" name="insta" placeholder="Instagram account"><br>
+    <label for="tweet">Twitter <i><b>(Optional)</b></i>: </label>
+    <input id="tweet" type="text" name="tweet" placeholder="Twitter account"><br>
+    <br>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="button">Register Business</button>
+  </form>
 </div>
 
+{% if err %}
+  <div class="alert alert-danger">
+    <b>{{ err }}</b>
+  </div>
+{% endif %}
 
 {% endblock %}

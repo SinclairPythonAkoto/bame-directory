@@ -494,7 +494,7 @@ def register():
         email = request.form.get("email")
         confirmEmail = request.form.get("confirmEmail")
         password = request.form.get("pass")
-        firstname = request.form.get("firstName")
+        firstName = request.form.get("firstName")
         lastName = request.form.get("lastName")
         businessName = request.form.get("businessName")
         startYear = request.form.get("startYear")
@@ -526,6 +526,54 @@ def register():
             Instagram = insta,
             Twitter = tweet,
         )
+        if selectCategory == "arts":
+            keyWords = keyWords.split(", ")
+            keyWords = len(keyWords)
+            if keyWords <= 14:
+                err = "Please provide 15 or more keywords for your business"
+                return render_template('home.html', err=err)
+            elif keyWords >= 15:
+                try:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("arts_Media_Tech").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
+
+                    artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
+                    artCat = [x.val() for x in artCategory.each()]
+                    num = len(artCat)
+                    artCat = artCat[num - 1]
+                    if signed_in_user['users'][0]['email'] == artCat['confirmEmail']:
+                            return render_template(
+                            'arts.html',
+                            business = artCat['businessName'],
+                            founder = artCat['firstName'],
+                            surname = artCat['lastName'],
+                            year = artCat['businessStartYear'],
+                            category = artCat['businessCategory'],
+                            description = artCat['businessDescription'],
+                            address = artCat['businessAddress'],
+                            email = artCat['businessEmail'],
+                            phone = artCat['businessNumber'],
+                            web = artCat['businessURL'],
+                            tweet = artCat['Twitter'],
+                            insta = artCat['Instagram'])
+                except:
+                    return render_template('home.html')
+        # elif selectCategory == "charity":
+        #     try:
+        #         user = auth.create_user_with_email_and_password(email, password)
+        #         auth.send_email_verification(user['idToken'])
+        #         user = auth.refresh(user['refreshToken'])
+        #         db.child("Bame_Business").child("business").child("charities_SupportGroups").push(bameRegister, user['idToken'])
+        #         signed_in_user = auth.get_account_info(user['idToken'])
+        #
+        #         charityCategory = db.child("Bame_Business").child("business").child("charities_SupportGroups").get(user['idToken'])
+        #         charityCat = [x.val() for x in charityCategory.each()]
+        #         num = len(charityCat)
+        #         charityCat = charityCat[num - 1]
+        #         if signed_in_user['users'][0]['email'] ==
 
 if __name__ == '__main__':
     app.run(debug=True)
