@@ -33,6 +33,12 @@
     <i><b>Please provide a password with at least 6 characters</b></i><br>
     <label for="inputPassword">Password</label><br>
     <input id="inputPassword" type="password" name="password" placeholder="minimum 6 characters" required autofocus>
+    {% if passwordERROR %}
+      <br><br>
+      <div class="alert alert-danger">
+        <b>{{ passwordERROR }}</b>
+      </div>
+    {% endif %}
     <hr>
     <h3>Your Business</h3>
     <label for="firstName">First Name: </label>

@@ -527,6 +527,12 @@ def register():
             Twitter = tweet,
         )
         if selectCategory == "arts":
+            # # pswrd = password
+            # # if len(str(pswrd)) <= 5:
+            # if not password:
+            #     err = "Please provde a valid password. Your password must contain at LEAST 6 characters."
+            #     return render_template('home.html', passwordERROR=err)
+            # else:
             keyWords = keyWords.split(", ")
             keyWords = len(keyWords)
             if keyWords <= 14:
@@ -565,6 +571,8 @@ def register():
                         except:
                             err = "Something went wrong, your registration was not complete."
                             return render_template('home.html', err=err)
+                            # password error
+                            #
         # elif selectCategory == "charity":
         #     try:
         #         user = auth.create_user_with_email_and_password(email, password)
