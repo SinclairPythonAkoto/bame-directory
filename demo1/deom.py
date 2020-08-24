@@ -533,34 +533,39 @@ def register():
                 err = "Please provide 15 or more keywords for your business"
                 return render_template('home.html', err=err)
             elif keyWords >= 15:
-                try:
-                    user = auth.create_user_with_email_and_password(email, password)
-                    auth.send_email_verification(user['idToken'])
-                    user = auth.refresh(user['refreshToken'])
-                    db.child("Bame_Business").child("business").child("arts_Media_Tech").push(bameRegister, user['idToken'])
-                    signed_in_user = auth.get_account_info(user['idToken'])
+                if len(email) < 1 and len(businessNumber) < 1:
+                    err = "Please provide 15 or more keywords for your business"
+                    return render_template('home.html', err=err)
+                else:
+                    try:
+                        user = auth.create_user_with_email_and_password(email, password)
+                        auth.send_email_verification(user['idToken'])
+                        user = auth.refresh(user['refreshToken'])
+                        db.child("Bame_Business").child("business").child("arts_Media_Tech").push(bameRegister, user['idToken'])
+                        signed_in_user = auth.get_account_info(user['idToken'])
 
-                    artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
-                    artCat = [x.val() for x in artCategory.each()]
-                    num = len(artCat)
-                    artCat = artCat[num - 1]
-                    if signed_in_user['users'][0]['email'] == artCat['confirmEmail']:
-                            return render_template(
-                            'arts.html',
-                            business = artCat['businessName'],
-                            founder = artCat['firstName'],
-                            surname = artCat['lastName'],
-                            year = artCat['businessStartYear'],
-                            category = artCat['businessCategory'],
-                            description = artCat['businessDescription'],
-                            address = artCat['businessAddress'],
-                            email = artCat['businessEmail'],
-                            phone = artCat['businessNumber'],
-                            web = artCat['businessURL'],
-                            tweet = artCat['Twitter'],
-                            insta = artCat['Instagram'])
-                except:
-                    return render_template('home.html')
+                        artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
+                        artCat = [x.val() for x in artCategory.each()]
+                        num = len(artCat)
+                        artCat = artCat[num - 1]
+                        if signed_in_user['users'][0]['email'] == artCat['confirmEmail']:
+                                return render_template(
+                                'arts.html',
+                                business = artCat['businessName'],
+                                founder = artCat['firstName'],
+                                surname = artCat['lastName'],
+                                year = artCat['businessStartYear'],
+                                category = artCat['businessCategory'],
+                                description = artCat['businessDescription'],
+                                address = artCat['businessAddress'],
+                                email = artCat['businessEmail'],
+                                phone = artCat['businessNumber'],
+                                web = artCat['businessURL'],
+                                tweet = artCat['Twitter'],
+                                insta = artCat['Instagram'])
+                    except:
+                        err = "Something went wrong"
+                        return render_template('home.html', err=err)
         # elif selectCategory == "charity":
         #     try:
         #         user = auth.create_user_with_email_and_password(email, password)
