@@ -75,6 +75,12 @@
     <label for="businessNumber">Contact: </label><br>
     <i><b>Please provide either a landline or a mobile number.  Only provide a number you are comfortable sharing to the public.</b></i>
     <input id="businessNumber" type="number" name="businessNumber" placeholder="Landline/Mobile">
+    {% if contactERROR %}
+      <br><br>
+      <div class="alert alert-danger">
+        <b>{{ contactERROR }}</b>
+      </div>
+    {% endif %}
     <hr>
     <h4>Business Address</h4>
     <label for="businessAddressSummary">

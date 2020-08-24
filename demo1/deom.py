@@ -533,10 +533,10 @@ def register():
                 err = "Please provide 15 or more keywords for your business"
                 return render_template('home.html', err=err)
             elif keyWords >= 15:
-                    # try:
+                    # if neither businessEmail or businessNumber entered
                     if businessEmail == None and businessNumber == None:
                         err = "Please provide an email or phone number"
-                        return render_template('home.html', err=err)
+                        return render_template('home.html', contactERROR=err)
                     else:
                         user = auth.create_user_with_email_and_password(email, password)
                         auth.send_email_verification(user['idToken'])
