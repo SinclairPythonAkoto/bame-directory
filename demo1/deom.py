@@ -501,8 +501,8 @@ def register():
         selectCategory = request.form.get("selectCategory")
         businessDescription = request.form.get("businessDescription")
         keyWords = request.form.get("keyWords")
-        businessEmail = request.form.get("businessEmail")
-        businessNumber = request.form.get("businessNumber")
+        businessEmail = request.form.get("businessEmail") or None
+        businessNumber = request.form.get("businessNumber") or None
         businessAddress = request.form.get("businessAddress")
         businessTown = request.form.get("businessTown")
         businessCity = request.form.get("businessCity")
@@ -533,11 +533,11 @@ def register():
                 err = "Please provide 15 or more keywords for your business"
                 return render_template('home.html', err=err)
             elif keyWords >= 15:
-                if len(email) < 1 and len(businessNumber) < 1:
-                    err = "Please provide 15 or more keywords for your business"
-                    return render_template('home.html', err=err)
-                else:
-                    try:
+                    # try:
+                    if businessEmail == None and businessNumber == None:
+                        err = "Please provide an email or phone number"
+                        return render_template('home.html', err=err)
+                    else:
                         user = auth.create_user_with_email_and_password(email, password)
                         auth.send_email_verification(user['idToken'])
                         user = auth.refresh(user['refreshToken'])
@@ -546,9 +546,7 @@ def register():
 
                         artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
                         artCat = [x.val() for x in artCategory.each()]
-                        num = len(artCat)
-                        artCat = artCat[num - 1]
-                        if signed_in_user['users'][0]['email'] == artCat['confirmEmail']:
+                        if signed_in_user['users'][0]['email'] == artCat[0]['confirmEmail']:
                                 return render_template(
                                 'arts.html',
                                 business = artCat['businessName'],
@@ -563,9 +561,9 @@ def register():
                                 web = artCat['businessURL'],
                                 tweet = artCat['Twitter'],
                                 insta = artCat['Instagram'])
-                    except:
-                        err = "Something went wrong"
-                        return render_template('home.html', err=err)
+                    # except:
+                    #     err = "Something went wrong"
+                    #     return render_template('home.html', err=err)
         # elif selectCategory == "charity":
         #     try:
         #         user = auth.create_user_with_email_and_password(email, password)
