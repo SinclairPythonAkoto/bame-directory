@@ -539,12 +539,7 @@ def register():
                 err = "Please provide 15 or more keywords for your business"
                 return render_template('home.html', err=err)
             elif keyWords >= 15:
-                # try:
-                # if neither businessEmail or businessNumber entered
-                if businessEmail == '' and businessNumber == '':
-                    err = "Please provide an email or phone number"
-                    return render_template('home.html', contactERROR=err)
-                elif businessEmail != '' or businessNumber != '':
+                try:
                     user = auth.create_user_with_email_and_password(email, password)
                     auth.send_email_verification(user['idToken'])
                     user = auth.refresh(user['refreshToken'])
@@ -568,9 +563,9 @@ def register():
                         web = artCat[0]['businessURL'],
                         tweet = artCat[0]['Twitter'],
                         insta = artCat[0]['Instagram'])
-                # except:
-                #     err = "Something went wrong, your registration was not complete."
-                #     return render_template('home.html', err=err)
+                except:
+                    err = "Something went wrong, your registration was not complete."
+                    return render_template('home.html', err=err)
         # elif selectCategory == "charity":
         #     keyWords = keywords.split(", ")
         #     keyWords = len(keyWords n)
