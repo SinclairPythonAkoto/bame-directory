@@ -539,40 +539,41 @@ def register():
                 err = "Please provide 15 or more keywords for your business"
                 return render_template('home.html', err=err)
             elif keyWords >= 15:
-                    # if neither businessEmail or businessNumber entered
-                    if businessEmail == None and businessNumber == None:
-                        err = "Please provide an email or phone number"
-                        return render_template('home.html', contactERROR=err)
-                    else:
-                        try:
-                            user = auth.create_user_with_email_and_password(email, password)
-                            auth.send_email_verification(user['idToken'])
-                            user = auth.refresh(user['refreshToken'])
-                            db.child("Bame_Business").child("business").child("arts_Media_Tech").push(bameRegister, user['idToken'])
-                            signed_in_user = auth.get_account_info(user['idToken'])
+                # try:
+                # if neither businessEmail or businessNumber entered
+                if businessEmail == None and businessNumber == None:
+                    err = "Please provide an email or phone number"
+                    return render_template('home.html', contactERROR=err)
+                elif businessEmail != None or businessNumber != None:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("arts_Media_Tech").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
 
-                            artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
-                            artCat = [x.val() for x in artCategory.each()]
-                            if signed_in_user['users'][0]['email'] == artCat[0]['confirmEmail']:
-                                    return render_template(
-                                    'arts.html',
-                                    business = artCat['businessName'],
-                                    founder = artCat['firstName'],
-                                    surname = artCat['lastName'],
-                                    year = artCat['businessStartYear'],
-                                    category = artCat['businessCategory'],
-                                    description = artCat['businessDescription'],
-                                    address = artCat['businessAddress'],
-                                    email = artCat['businessEmail'],
-                                    phone = artCat['businessNumber'],
-                                    web = artCat['businessURL'],
-                                    tweet = artCat['Twitter'],
-                                    insta = artCat['Instagram'])
-                        except:
-                            err = "Something went wrong, your registration was not complete."
-                            return render_template('home.html', err=err)
-                            # password error
-                            #
+                    artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
+                    artCat = [x.val() for x in artCategory.each()]
+                    if signed_in_user['users'][0]['email'] == artCat[0]['confirmEmail']:
+                        return render_template(
+                        'arts.html',
+                        business = artCat[0]['businessName'],
+                        founder = artCat[0]['firstName'],
+                        surname = artCat[0]['lastName'],
+                        year = artCat[0]['businessStartYear'],
+                        category = artCat[0]['businessCategory'],
+                        description = artCat[0]['businessDescription'],
+                        address = artCat[0]['businessAddress'],
+                        email = artCat[0]['businessEmail'] or None,
+                        phone = artCat[0]['businessNumber'],
+                        web = artCat[0]['businessURL'],
+                        tweet = artCat[0]['Twitter'],
+                        insta = artCat[0]['Instagram'])
+                # except:
+                #     err = "Something went wrong, your registration was not complete."
+                #     return render_template('home.html', err=err)
+        # elif selectCategory == "charity":
+        #     keyWords = keywords.split(", ")
+        #     keyWords = len(keyWords n)
         # elif selectCategory == "charity":
         #     try:
         #         user = auth.create_user_with_email_and_password(email, password)
