@@ -501,8 +501,8 @@ def register():
         selectCategory = request.form.get("selectCategory")
         businessDescription = request.form.get("businessDescription")
         keyWords = request.form.get("keyWords")
-        businessEmail = request.form.get("businessEmail") or None
-        businessNumber = request.form.get("businessNumber") or None
+        businessEmail = request.form.get("businessEmail") or ''
+        businessNumber = request.form.get("businessNumber") or ''
         businessAddress = request.form.get("businessAddress")
         businessTown = request.form.get("businessTown")
         businessCity = request.form.get("businessCity")
@@ -541,10 +541,10 @@ def register():
             elif keyWords >= 15:
                 # try:
                 # if neither businessEmail or businessNumber entered
-                if businessEmail == None and businessNumber == None:
+                if businessEmail == '' and businessNumber == '':
                     err = "Please provide an email or phone number"
                     return render_template('home.html', contactERROR=err)
-                elif businessEmail != None or businessNumber != None:
+                elif businessEmail != '' or businessNumber != '':
                     user = auth.create_user_with_email_and_password(email, password)
                     auth.send_email_verification(user['idToken'])
                     user = auth.refresh(user['refreshToken'])
@@ -563,7 +563,7 @@ def register():
                         category = artCat[0]['businessCategory'],
                         description = artCat[0]['businessDescription'],
                         address = artCat[0]['businessAddress'],
-                        email = artCat[0]['businessEmail'] or None,
+                        email = artCat[0]['businessEmail'], # brings up keyError if nothing entered
                         phone = artCat[0]['businessNumber'],
                         web = artCat[0]['businessURL'],
                         tweet = artCat[0]['Twitter'],
