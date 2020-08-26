@@ -14,7 +14,7 @@
 <br><br>
 {% for i in art_category %}
 <div class="card">
-  <img src="/static/artsCatPic.jpg" alt="Avatar" style="width:100%">
+  <img src="/static/artsCatPic.jpg" alt="categoryAvatar" style="width:100%">
   <div class="containerCard">
     <h2><b>{{ artCat[i]['businessName'] }}</b></h2>
     <p>Founder: {{ artCat[i]['userName'] }}</p>
@@ -61,6 +61,49 @@
 
 {% if business %}
   <h1>Hello world!</h1>
+  <div class="card">
+    <img src="/static/artsCatPic.jpg" alt="categoryAvatar" width="100%">
+    <div class="containerCard">
+      <h2><b>{{ business }}</b></h2>
+      <p>Founder: {{ founder }} {{ surname }}</p>
+      <p>Year business started: {{ year }}</p>
+      <hr>
+      <p>{{ description }}</p>
+      <hr>
+      {% if address %}
+        <h4>Business address:</h4>
+        <p>{{ address[0] }}</p>
+        <p>{{ address[1] }}</p>
+        <p>{{ address[2] }}</p>
+        <p>{{ address[3] }}</p>
+        <br>
+      {% endif %}
+      <hr>
+      {% if email %}
+        <p>Email: {{ email }}</p>
+      {% endif %}
+
+      {% if phone %}
+        <p>Contact: {{ phone }}</p>
+      {% endif %}
+
+      {% if web %}
+        <p>Website: </p><a href="{{ web }}">{{ web }}</a>
+        <br>
+      {% endif %}
+
+      {% if tweet %}
+        <p>Twitter: </p><a href="{{ tweet }}">{{ tweet }}</a>
+        <br>
+      {% endif %}
+
+      {% if insta %}
+        <p>Instagram: </p><a href="{{ insta }}">{{ insta }}</a>
+        <br>
+      {% endif %}
+      <br>
+    </div>
+  </div>
 {% endif %}
 
 

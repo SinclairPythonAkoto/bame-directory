@@ -501,8 +501,8 @@ def register():
         selectCategory = request.form.get("selectCategory")
         businessDescription = request.form.get("businessDescription")
         keyWords = request.form.get("keyWords")
-        businessEmail = request.form.get("businessEmail") or ''
-        businessNumber = request.form.get("businessNumber") or ''
+        businessEmail = request.form.get("businessEmail")
+        businessNumber = request.form.get("businessNumber")
         businessAddress = request.form.get("businessAddress")
         businessTown = request.form.get("businessTown")
         businessCity = request.form.get("businessCity")
@@ -566,7 +566,8 @@ def register():
                 except:
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
-        # elif selectCategory == "charity":
+        elif selectCategory == "charity":
+            pass
         #     keyWords = keywords.split(", ")
         #     keyWords = len(keyWords n)
         # elif selectCategory == "charity":
