@@ -636,7 +636,39 @@ def register():
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
         elif selectCategory == "health":
-            pass
+            keyWords = keyWords.split(", ")
+            keyWords = len(keyWords)
+            if keyWords <= 14:
+                err = "Please provide 15 or more keywords for your business"
+                return render_template('home.html', err=err)
+            elif keyWords >= 15:
+                try:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("health_Lifestyle_Sports").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
+
+                    healthCategory = db.child("Bame_Business").child("business").child("health_Lifestyle_Sports").get(user['idToken'])
+                    healthCat = [x.val() for x in healthCategory.each()]
+                    if signed_in_user['users'][0]['email'] == healthCat[0]['confirmEmail']:
+                        return render_template(
+                        'health.html',
+                        business = healthCat[0]['businessName'],
+                        founder = healthCat[0]['firstName'],
+                        surname = healthCat[0]['lastName'],
+                        year = healthCat[0]['businessStartYear'],
+                        category = healthCat[0]['businessCategory'],
+                        description = healthCat[0]['businessDescription'],
+                        address = healthCat[0]['businessAddress'],
+                        email = healthCat[0]['businessEmail'],
+                        phone = healthCat[0]['businessNumber'],
+                        web = healthCat[0]['businessURL'],
+                        tweet = healthCat[0]['Twitter'],
+                        insta = healthCat[0]['Instagram'])
+                except:
+                    err = "Something went wrong, your registration was not complete."
+                    return render_template('home.html', err=err)
         elif selectCategory == "house":
             pass
         elif selectCategory == "legal":
