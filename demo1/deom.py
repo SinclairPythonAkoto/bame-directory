@@ -704,7 +704,39 @@ def register():
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
         elif selectCategory == "legal":
-            pass
+            keyWords = keyWords.split(", ")
+            keyWords = len(keyWords)
+            if keyWords <= 14:
+                err = "Please provide 15 or more keywords for your business"
+                return render_template('home.html', err=err)
+            elif keyWords >= 15:
+                try:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("legal_Financial").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
+
+                    legalCategory = db.child("Bame_Business").child("business").child("legal_Financial").get(user['idToken'])
+                    legalCat = [x.val() for x in legalCategory.each()]
+                    if signed_in_user['users'][0]['email'] == legalCat[0]['confirmEmail']:
+                        return render_template(
+                        'legal.html',
+                        business = legalCat[0]['businessName'],
+                        founder = legalCat[0]['firstName'],
+                        surname = legalCat[0]['lastName'],
+                        year = legalCat[0]['businessStartYear'],
+                        category = legalCat[0]['businessCategory'],
+                        description = legalCat[0]['businessDescription'],
+                        address = legalCat[0]['businessAddress'],
+                        email = legalCat[0]['businessEmail'],
+                        phone = legalCat[0]['businessNumber'],
+                        web = legalCat[0]['businessURL'],
+                        tweet = legalCat[0]['Twitter'],
+                        insta = legalCat[0]['Instagram'])
+                except:
+                    err = "Something went wrong, your registration was not complete."
+                    return render_template('home.html', err=err)
         elif selectCategory == "retail":
             pass
         else:
