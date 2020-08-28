@@ -566,7 +566,7 @@ def register():
                 except:
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
-        elif selectCategory == "charity":
+        if selectCategory == "charity":
             keyWords = keyWords.split(", ")
             keyWords = len(keyWords)
             if keyWords <= 14:
@@ -600,8 +600,9 @@ def register():
                 except:
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
-        elif selectCategory == "foods":
-            pass
+
+        # elif selectCategory == "foods":
+        #     pass
 
 if __name__ == '__main__':
     app.run(debug=True)
