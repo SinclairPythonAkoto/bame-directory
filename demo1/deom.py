@@ -670,7 +670,39 @@ def register():
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
         elif selectCategory == "house":
-            pass
+            keyWords = keyWords.split(", ")
+            keyWords = len(keyWords)
+            if keyWords <= 14:
+                err = "Please provide 15 or more keywords for your business"
+                return render_template('home.html', err=err)
+            elif keyWords >= 15:
+                try:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("housing_Property_ConstructionServices").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
+
+                    houseCategory = db.child("Bame_Business").child("business").child("housing_Property_ConstructionServices").get(user['idToken'])
+                    houseCat = [x.val() for x in houseCategory.each()]
+                    if signed_in_user['users'][0]['email'] == houseCat[0]['confirmEmail']:
+                        return render_template(
+                        'house.html',
+                        business = houseCat[0]['businessName'],
+                        founder = houseCat[0]['firstName'],
+                        surname = houseCat[0]['lastName'],
+                        year = houseCat[0]['businessStartYear'],
+                        category = houseCat[0]['businessCategory'],
+                        description = houseCat[0]['businessDescription'],
+                        address = houseCat[0]['businessAddress'],
+                        email = houseCat[0]['businessEmail'],
+                        phone = houseCat[0]['businessNumber'],
+                        web = houseCat[0]['businessURL'],
+                        tweet = houseCat[0]['Twitter'],
+                        insta = houseCat[0]['Instagram'])
+                except:
+                    err = "Something went wrong, your registration was not complete."
+                    return render_template('home.html', err=err)
         elif selectCategory == "legal":
             pass
         elif selectCategory == "retail":
