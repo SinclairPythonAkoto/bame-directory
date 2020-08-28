@@ -738,7 +738,39 @@ def register():
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
         elif selectCategory == "retail":
-            pass
+            keyWords = keyWords.split(", ")
+            keyWords = len(keyWords)
+            if keyWords <= 14:
+                err = "Please provide 15 or more keywords for your business"
+                return render_template('home.html', err=err)
+            elif keyWords >= 15:
+                try:
+                    user = auth.create_user_with_email_and_password(email, password)
+                    auth.send_email_verification(user['idToken'])
+                    user = auth.refresh(user['refreshToken'])
+                    db.child("Bame_Business").child("business").child("retail_Fashion_Jewellery").push(bameRegister, user['idToken'])
+                    signed_in_user = auth.get_account_info(user['idToken'])
+
+                    retailCategory = db.child("Bame_Business").child("business").child("retail_Fashion_Jewellery").get(user['idToken'])
+                    retailCat = [x.val() for x in retailCategory.each()]
+                    if signed_in_user['users'][0]['email'] == retailCat[0]['confirmEmail']:
+                        return render_template(
+                        'retail.html',
+                        business = retailCat[0]['businessName'],
+                        founder = retailCat[0]['firstName'],
+                        surname = retailCat[0]['lastName'],
+                        year = retailCat[0]['businessStartYear'],
+                        category = retailCat[0]['businessCategory'],
+                        description = retailCat[0]['businessDescription'],
+                        address = retailCat[0]['businessAddress'],
+                        email = retailCat[0]['businessEmail'],
+                        phone = retailCat[0]['businessNumber'],
+                        web = retailCat[0]['businessURL'],
+                        tweet = retailCat[0]['Twitter'],
+                        insta = retailCat[0]['Instagram'])
+                except:
+                    err = "Something went wrong, your registration was not complete."
+                    return render_template('home.html', err=err)
         else:
             # if an category is NOT selected
             pass
