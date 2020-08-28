@@ -777,7 +777,37 @@ def login():
     if request.method == 'GET':
         return render_template('home.html')
     else:
-        pass
+        email = request.form.get("login")
+        password = request.form.get("pass")
+
+        user = auth.sign_in_with_email_and_password(email, password)
+        user = auth.refresh(user['refreshToken'])
+        signed_in_user = auth.get_account_info(user['idToken'])
+
+        artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
+        foodCategory = db.child("Bame_Business").child("business").child("foods_Restaurants_Takeaways").get(user['idToken'])
+        healthCategory = db.child("Bame_Business").child("business").child("health_Lifestyle_Sports").get(user['idToken'])
+        housingCategory = db.child("Bame_Business").child("business").child("housing_Property_ConstructionServices").get(user['idToken'])
+        retailCategory = db.child("Bame_Business").child("business").child("retail_Fashion_Jewellery").get(user['idToken'])
+        charityCategory = db.child("Bame_Business").child("business").child("charities_SupportGroups").get(user['idToken'])
+        legalCategory = db.child("Bame_Business").child("business").child("legal_Financial").get(user['idToken'])
+
+        if artCategory:
+            artCat = [x.val() for x in artCategory.each()]
+            return render_template(
+            'arts.html',
+            business = artCat[0]['businessName'],
+            founder = artCat[0]['firstName'],
+            surname = artCat[0]['lastName'],
+            year = artCat[0]['businessStartYear'],
+            category = artCat[0]['businessCategory'],
+            description = artCat[0]['businessDescription'],
+            address = artCat[0]['businessAddress'],
+            email = artCat[0]['businessEmail'], # brings up keyError if nothing entered
+            phone = artCat[0]['businessNumber'],
+            web = artCat[0]['businessURL'],
+            tweet = artCat[0]['Twitter'],
+            insta = artCat[0]['Instagram'])
 
 if __name__ == '__main__':
     app.run(debug=True)
