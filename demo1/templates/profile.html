@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Your Account</h1>
+<h2>{{ founder }} {{ surname }}</h2>
 <hr>
 
 {% if business %}
@@ -55,7 +56,19 @@
   <form class="" action="{{ url_for('businessList') }}" method="post">
     <h2>Your businesses:</h2>
     {% for x in artCategory %}
-      <h1>{{ artCat[0]['businessName']}}</h1>
+      <h1>{{ artCat[x]['businessName'] }}</h1>
+      <p>
+        {% if artCat[x]['businessAddress'] %}
+          {{ artCat[x]['businessAddress'][2] }},
+        {% endif %}
+        {% if artCat[x]['businessURL'] %}
+          <a href="{{ artCat[x]['businessURL']}}">{{ artCat[x]['businessURL']}}</a>,
+        {% endif %}
+        {% if artCat[x]['businessNumber'] %}
+          {{ artCat[x]['businessNumber'] }}
+        {% endif %}
+      </p>
+      <hr>
     {% endfor %}
   </form>
 </div>

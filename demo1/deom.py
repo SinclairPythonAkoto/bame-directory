@@ -821,7 +821,27 @@ def addNewBusiness():
 @app.route('/businessList', methods=['GET', 'POST'])
 def businessList():
     if request.method == 'GET':
-        return render_template('profile.html', artCategory=artCategory, artCat=artCat)
+        email = request.form.get("login")
+        password = request.form.get("pass")
+        artCategory = db.child("Bame_Business").child("business").child("arts_Media_Tech").get(user['idToken'])
+        art_category = len(artCat)
+        art_category = range(art_category)
+        for x in art_category:
+            return render_template(
+            'profile.html',
+            business = artCat[0]['businessName'],
+            founder = artCat[0]['firstName'],
+            surname = artCat[0]['lastName'],
+            year = artCat[0]['businessStartYear'],
+            category = artCat[0]['businessCategory'],
+            description = artCat[0]['businessDescription'],
+            address = artCat[0]['businessAddress'],
+            email = artCat[0]['businessEmail'], # brings up keyError if nothing entered
+            phone = artCat[0]['businessNumber'],
+            web = artCat[0]['businessURL'],
+            tweet = artCat[0]['Twitter'],
+            insta = artCat[0]['Instagram'],
+            artCategory = art_category, artCat=artCat)
 
 if __name__ == '__main__':
     app.run(debug=True)
