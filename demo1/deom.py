@@ -601,8 +601,18 @@ def register():
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
 
-        # elif selectCategory == "foods":
-        #     pass
-
+        elif selectCategory == "foods":
+            pass
+        elif selectCategory == "health":
+            pass
+        elif selectCategory == "house":
+            pass
+        elif selectCategory == "legal":
+            pass
+        elif selectCategory == "retail":
+            pass
+        else:
+            # if an category is NOT selected
+            pass
 if __name__ == '__main__':
     app.run(debug=True)
