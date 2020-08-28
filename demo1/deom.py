@@ -771,8 +771,13 @@ def register():
                 except:
                     err = "Something went wrong, your registration was not complete."
                     return render_template('home.html', err=err)
-        else:
-            # if an category is NOT selected
-            pass
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('home.html')
+    else:
+        pass
+        
 if __name__ == '__main__':
     app.run(debug=True)
