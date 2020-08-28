@@ -13,8 +13,21 @@
 </p>
 <br>
 <hr>
-<div class="">
+<div class="login">
   <h2>Login </h2>
+   <form class="" action="{{ url_for('login') }}" method="post">
+     <i>
+       <b>
+         Please login to gain access to your account.
+       </b>
+     </i><br>
+     <label for="inputLogin">Enter your email to login:</label>
+     <input id="inputLogin" type="email" name="login" required autofocus><br>
+     <label for="inputPassword">Password</label>
+     <input type="password" name="pass" required autofocus><br>
+     <br>
+     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+   </form>
 </div>
 <hr>
 <div id="register">

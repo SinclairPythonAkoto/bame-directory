@@ -778,6 +778,6 @@ def login():
         return render_template('home.html')
     else:
         pass
-        
+
 if __name__ == '__main__':
     app.run(debug=True)
